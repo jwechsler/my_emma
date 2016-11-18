@@ -8,6 +8,11 @@ require 'httparty'
 
 module MyEmma
 
+  def self.legal?(attr)
+    #Rails.logger.info "Found key #{key}.  It's #{!(key.include?('-')|| key.include?(' ')) ? 'legal' : 'not legal'}"
+    return !(key.include?('-'))
+  end
+
    def self.root
     File.expand_path '../..', __FILE__
   end

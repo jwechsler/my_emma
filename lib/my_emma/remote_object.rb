@@ -17,16 +17,12 @@ module MyEmma
       end
     )
 
-    # returns true if a key is expressible in ruby from external system
-    def legal(key)
-      Rails.logger.info "Found key #{key}.  It's #{!(key.include?('-')|| key.include?(' ')) ? 'legal' : 'not legal'}"
-      return !(key.include?('-'))
 
-    end
+    # returns true if a key is expressible in ruby from external system
 
     def initialize(attr)
       attr.each do |key,val|
-        if legal(key)
+        if MyEmma.legal(key)
           check_key = key.to_sym
 
           if self.class.api_attributes.include?(check_key)

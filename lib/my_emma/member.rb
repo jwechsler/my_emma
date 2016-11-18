@@ -12,7 +12,7 @@ module MyEmma
     @@known_attributes = Set.new
 
     def self.custom_attributes(*symbols)
-      legal_symbols = symbols.select {|s| self.legal(s) }
+      legal_symbols = symbols.select {|s| MyEmma.legal?(s) }
       @@known_attributes.merge(legal_symbols)
       legal_symbols.each { |key| self.class_eval do; attr_accessor "#{key}"; end }
       self.methods
