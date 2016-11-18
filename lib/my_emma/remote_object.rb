@@ -19,7 +19,9 @@ module MyEmma
 
     # returns true if a key is expressible in ruby from external system
     def legal(key)
-      return !(key.include?('-')|| !key.include?(' '))
+      Rails.logger.info "Found key #{key}.  It's #{!(key.include?('-')|| key.include?(' ')) ? 'legal' : 'not legal'}"
+      return !(key.include?('-'))
+
     end
 
     def initialize(attr)
