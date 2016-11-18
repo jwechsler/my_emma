@@ -22,7 +22,7 @@ module MyEmma
 
     def initialize(attr)
       attr.each do |key,val|
-        if MyEmma.legal(key)
+        if MyEmma.legal?(key)
           check_key = key.to_sym
 
           if self.class.api_attributes.include?(check_key)
