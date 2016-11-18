@@ -10,7 +10,7 @@ module MyEmma
 
   def self.legal?(attr)
     #Rails.logger.info "Found key #{key}.  It's #{!(key.include?('-')|| key.include?(' ')) ? 'legal' : 'not legal'}"
-    return !(attr.include?('-'))
+    return !(attr.to_s.include?('-'))
   end
 
    def self.root
