@@ -17,18 +17,25 @@ module MyEmma
       end
     )
 
+    # returns true if a key is expressible in ruby from external system
+    def legal(key)
+      return !(key.include?('-')|| !key.include?(' '))
+    end
+
     def initialize(attr)
       attr.each do |key,val|
-        check_key = key.to_sym
+        if legal(key)
+          check_key = key.to_sym
 
-        if self.class.api_attributes.include?(check_key)
-          unless self.methods.include?(check_key) then
-            singleton_class.class_eval do; attr_reader "#{key}"; end
-            if self.class.api_attributes.include?(check_key) then
-              singleton_class.class_eval do; attr_writer "#{key}"; end
+          if self.class.api_attributes.include?(check_key)
+            unless self.methods.include?(check_key) then
+              singleton_class.class_eval do; attr_reader "#{key}"; end
+              if self.class.api_attributes.include?(check_key) then
+                singleton_class.class_eval do; attr_writer "#{key}"; end
+              end
             end
+            self.instance_variable_set "@#{key}", val
           end
-          self.instance_variable_set "@#{key}", val
         end
       end
 
