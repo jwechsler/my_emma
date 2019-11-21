@@ -2,7 +2,7 @@ module MyEmma
 
   class Member < RemoteObject
 
-    attr_accessor :email, :status, :member_id
+    attr_accessor :email, :status, :member_id, :remoteid
 
     API_PROTECTED = [:status, :confirmed_opt_in, :account_id, :member_id, :last_modified_at, :member_status_id,
                      :plaintext_preferred, :email_error, :member_since, :bounce_count, :deleted_at]
