@@ -28,6 +28,12 @@ module MyEmma
       found
     end
 
+    def copy_members_to_group(group_id)
+      Group.set_http_values
+      response = Group.put("/groups/#{self.id}/#{group_id}/members/copy", :body=>{member_status_id: ['a','e','o']}.to_json)
+      result = Group.operation_ok?(response)
+    end
+
     def self.find(member_group_id)
       set_http_values
       g = get("/groups/#{member_group_id}")
